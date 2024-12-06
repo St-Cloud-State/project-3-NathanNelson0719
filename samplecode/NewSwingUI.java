@@ -41,5 +41,13 @@ public class NewSwingUI implements UIContext {
       graphics.drawLine(i1, i2, i3, i4);
     }
   }
+
+  public void drawTriangle(Point point1, Point point2, Point point3) {
+    if (point1 != null && point2 != null && point3 != null) {
+        int[] xPoints = {(int) point1.getX(), (int) point2.getX(), (int) point3.getX()};
+        int[] yPoints = {(int) point1.getY(), (int) point2.getY(), (int) point3.getY()};
+        graphics.drawPolygon(xPoints, yPoints, 3);
+    }
+  }
  
 }

@@ -5,10 +5,11 @@ public class DrawingProgram {
     UndoManager.setModel(model);
     View.setUndoManager(undoManager);
     View.setModel(model);
+    View.setDefaultLookAndFeelDecorated(true);
     View view = new View();
     Model.setView(view);
     Command.setUndoManager(undoManager);
     Command.setModel(model);
-    view.show();
+    view.setVisible(true);
   }
 }
