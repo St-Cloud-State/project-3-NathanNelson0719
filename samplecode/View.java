@@ -99,7 +99,7 @@ class View extends JFrame {
     openButton= new OpenButton(undoManager, this);
     undoButton = new UndoButton(undoManager);
     redoButton = new RedoButton(undoManager);
-    triangleButton = new TriangleButton(undoManager, this, drawingPanel);
+    triangleButton = new TriangleButton(undoManager, this, drawingPanel); //Triangle - Nathan
     buttonPanel.add(lineButton);
     buttonPanel.add(labelButton);
     buttonPanel.add(selectButton);
@@ -108,8 +108,8 @@ class View extends JFrame {
     buttonPanel.add(openButton);
     buttonPanel.add(undoButton);
     buttonPanel.add(redoButton);
-    buttonPanel.add(triangleButton);
-    this.setSize(600, 400);
+    buttonPanel.add(triangleButton);//Triangle - Nathan
+    this.setSize(1000, 666); //Changed the size to show all buttons, didnt display before
   }
   public void refresh() {
     // code to access the Model update the contents of the drawing panel.

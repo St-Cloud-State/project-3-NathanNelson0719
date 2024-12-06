@@ -1,4 +1,5 @@
-//Nathan N. Triangle
+//Nathan Nelson
+
 import java.awt.*;
 
 public class Triangle extends Item {
@@ -12,20 +13,35 @@ public class Triangle extends Item {
         this.point3 = point3;
     }
 
+    public void setPoint2(Point point2) {
+        this.point2 = point2;
+    }
+
+    public void setPoint3(Point point3) {
+        this.point3 = point3;
+    }
+
+    public boolean isComplete() {
+        return point1 != null && point2 != null && point3 != null;
+    }
+
     @Override
-    public boolean includes(Point point) {
-        // Check proximity to any vertex for simplicity
+    public boolean includes(Point point) { 
         return distance(point, point1) < 10.0 ||
-               distance(point, point2) < 10.0 ||
-               distance(point, point3) < 10.0;
+               (point2 != null && distance(point, point2) < 10.0) ||
+               (point3 != null && distance(point, point3) < 10.0);
     }
 
     @Override
     public void render(UIContext uiContext) {
-        uiContext.drawTriangle(point1, point2, point3);
+        if (point1 != null && point2 != null) {
+            uiContext.drawLine(point1, point2); 
+        }
+        if (point2 != null && point3 != null) {
+            uiContext.drawLine(point2, point3); 
+        }
+        if (point3 != null && point1 != null) {
+            uiContext.drawLine(point3, point1); 
+        }
     }
-
-    public Point getPoint1() { return point1; }
-    public Point getPoint2() { return point2; }
-    public Point getPoint3() { return point3; }
 }
