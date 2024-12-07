@@ -16,6 +16,7 @@ class View extends JFrame {
   private JButton undoButton;
   private JButton redoButton;
   private JButton triangleButton; //Triangle - Nathan
+  private JButton polygonButton; //Polygon - Nathan
   private static UndoManager undoManager;
     private String fileName;
   // other buttons to be added as needed;
@@ -100,6 +101,7 @@ class View extends JFrame {
     undoButton = new UndoButton(undoManager);
     redoButton = new RedoButton(undoManager);
     triangleButton = new TriangleButton(undoManager, this, drawingPanel); //Triangle - Nathan
+    polygonButton = new PolygonButton(undoManager, this, drawingPanel);  //Polygon - Nathan
     buttonPanel.add(lineButton);
     buttonPanel.add(labelButton);
     buttonPanel.add(selectButton);
@@ -109,6 +111,7 @@ class View extends JFrame {
     buttonPanel.add(undoButton);
     buttonPanel.add(redoButton);
     buttonPanel.add(triangleButton);//Triangle - Nathan
+    buttonPanel.add(polygonButton);//Polygon - Nathan
     this.setSize(1000, 666); //Changed the size to show all buttons, didnt display before
   }
   public void refresh() {
