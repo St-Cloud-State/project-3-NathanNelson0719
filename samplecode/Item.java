@@ -14,4 +14,7 @@ public abstract class Item implements Serializable {
   public  abstract void render(UIContext uiContext);
     //uiContext.draw(this);
   //}
+  public void translate(int dx, int dy) {
+    // Default implementation; subclasses will override this
+    }
 }

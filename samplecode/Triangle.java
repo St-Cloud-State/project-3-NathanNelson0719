@@ -44,4 +44,18 @@ public class Triangle extends Item {
             uiContext.drawLine(point3, point1); 
         }
     }
+
+    @Override
+    public void translate(int dx, int dy) {
+        // Translate each point exactly once
+        if (point1 != null) {
+            point1.translate(dx, dy);
+        }
+        if (point2 != null) {
+            point2.translate(dx, dy);
+        }
+        if (point3 != null) {
+            point3.translate(dx, dy);
+        }
+    }
 }

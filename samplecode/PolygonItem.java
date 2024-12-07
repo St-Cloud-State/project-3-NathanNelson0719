@@ -50,4 +50,23 @@ public class PolygonItem extends Item {
             line.render(uiContext);
         }
     }
+
+    @Override
+    public void translate(int dx, int dy) {
+    // Collect all unique points
+        ArrayList<Point> uniquePoints = new ArrayList<>();
+
+        for (Line line : lines) {
+            if (!uniquePoints.contains(line.getPoint1())) {
+                uniquePoints.add(line.getPoint1());
+            }
+            if (!uniquePoints.contains(line.getPoint2())) {
+                uniquePoints.add(line.getPoint2());
+            }
+        }
+    // Translate each unique point
+        for (Point point : uniquePoints) {
+            point.translate(dx, dy);
+        }
+    }
 }

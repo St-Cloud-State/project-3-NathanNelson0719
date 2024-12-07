@@ -17,6 +17,13 @@ public class Line extends Item {
   public boolean includes(Point point) {
     return ((distance(point, point1 ) < 10.0) || (distance(point, point2)< 10.0));
   }
+
+  @Override //Nathan
+  public void translate(int dx, int dy) {
+      point1.translate(dx, dy); // Translate the first endpoint
+      point2.translate(dx, dy); // Translate the second endpoint
+  }
+
   public void render(UIContext uiContext) {
     uiContext.drawLine(point1, point2);
   }
