@@ -1,12 +1,13 @@
+//Nathan Nelson
 import java.awt.*;
 import java.util.ArrayList;
 
 public class MoveCommand extends Command {
-    private ArrayList<Item> items; // The items to be moved
-    private int dx, dy; // The translation vector
+    private ArrayList<Item> items; 
+    private int dx, dy; 
 
     public MoveCommand(ArrayList<Item> items, int dx, int dy) {
-        this.items = new ArrayList<>(items); // Copy the list of items to ensure isolation
+        this.items = new ArrayList<>(items); 
         this.dx = dx;
         this.dy = dy;
     }
@@ -14,23 +15,23 @@ public class MoveCommand extends Command {
     @Override
     public void execute() {
         for (Item item : items) {
-            item.translate(dx, dy); // Apply the translation
+            item.translate(dx, dy); 
         }
-        model.setChanged(); // Refresh the canvas
+        model.setChanged(); 
     }
 
     @Override
     public boolean undo() {
         for (Item item : items) {
-            item.translate(-dx, -dy); // Reverse the translation
+            item.translate(-dx, -dy); 
         }
-        model.setChanged(); // Refresh the canvas
+        model.setChanged(); 
         return true;
     }
 
     @Override
     public boolean redo() {
-        execute(); // Reapply the translation
+        execute(); 
         return true;
     }
 }

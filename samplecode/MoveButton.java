@@ -1,3 +1,5 @@
+//Nathan Nelson
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -7,7 +9,7 @@ import java.util.Enumeration;
 public class MoveButton extends JButton implements ActionListener {
     private JPanel drawingPanel;
     private View view;
-    private UndoManager undoManager; // Reference to the UndoManager
+    private UndoManager undoManager; 
     private MouseHandler mouseHandler;
     private Point startPoint;
 
@@ -15,14 +17,14 @@ public class MoveButton extends JButton implements ActionListener {
         super("Move");
         this.view = view;
         this.drawingPanel = drawingPanel;
-        this.undoManager = undoManager; // Assign the UndoManager
+        this.undoManager = undoManager; 
         this.mouseHandler = new MouseHandler();
         addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        view.setCursor(new Cursor(Cursor.MOVE_CURSOR)); // Change cursor to move mode
+        view.setCursor(new Cursor(Cursor.MOVE_CURSOR)); 
         drawingPanel.addMouseListener(mouseHandler);
         drawingPanel.addMouseMotionListener(mouseHandler);
     }
@@ -30,18 +32,14 @@ public class MoveButton extends JButton implements ActionListener {
     private class MouseHandler extends MouseAdapter {
         @Override
         public void mousePressed(MouseEvent event) {
-            startPoint = View.mapPoint(event.getPoint()); // Record starting point
+            startPoint = View.mapPoint(event.getPoint()); 
         }
-
         @Override
         public void mouseReleased(MouseEvent event) {
             if (startPoint == null) return;
-
-            Point endPoint = View.mapPoint(event.getPoint()); // Record ending point
+            Point endPoint = View.mapPoint(event.getPoint()); 
             int dx = endPoint.x - startPoint.x;
             int dy = endPoint.y - startPoint.y;
-
-            // Get selected items from the model
             ArrayList<Item> selectedItems = new ArrayList<>();
             Enumeration<Item> items = Command.model.getSelectedItems();
             while (items.hasMoreElements()) {
@@ -49,7 +47,6 @@ public class MoveButton extends JButton implements ActionListener {
             }
 
             if (!selectedItems.isEmpty()) {
-                // Create and execute a MoveCommand
                 MoveCommand moveCommand = new MoveCommand(selectedItems, dx, dy);
                 undoManager.beginCommand(moveCommand);
                 undoManager.endCommand(moveCommand);
@@ -59,8 +56,8 @@ public class MoveButton extends JButton implements ActionListener {
             startPoint = null;
             drawingPanel.removeMouseListener(this);
             drawingPanel.removeMouseMotionListener(this);
-            view.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // Reset cursor
-            view.refresh(); // Refresh canvas
+            view.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); 
+            view.refresh(); 
         }
     }
 }
